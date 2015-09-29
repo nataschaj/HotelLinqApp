@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -141,8 +143,6 @@ namespace LinqHotelsExercise
             ;
 
 
-
-
             //Exercise, use LINQ to retrive the following information about Hotels and Rooms:
 
             // 1) List full details of all Hotels:
@@ -161,16 +161,19 @@ namespace LinqHotelsExercise
 
             // 8) List the number of hotels in Roskilde:
 
-            // 9) what is the avarage price of a room:
+            // 9) what is the average price of a room:
 
-            //10) what is the avarage price of a room at Hotel Scandic:
+            //10) what is the average price of a room at Hotel Scandic:
 
-            //11) what is the total reveneue per night from all double rooms:
+            //11) what is the total revenue per night from all double rooms:
 
             //12) List price and type of all rooms at Hotel Prindsen:
 
             //13) List distinct price and type of all rooms at Hotel Prindsen:
 
+            //14) Join the Hotels and Rooms 
+
+            //15) Be creative....use the join and some aggregate functions..
 
             Console.ReadLine();
 
