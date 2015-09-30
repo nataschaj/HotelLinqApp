@@ -177,16 +177,32 @@ namespace LinqHotelsExercise
             //    orderby mybookings.GuestNo descending, mybookings.RoomNo
             //    select mybookings;
 
-            var bookingList =
-                bookings.OrderByDescending(mybookings => mybookings.GuestNo)
-                .ThenBy(mybookings => mybookings.RoomNo);
+            //var bookingList =
+            //    bookings.OrderByDescending(mybookings => mybookings.GuestNo)
+            //    .ThenBy(mybookings => mybookings.RoomNo);
 
+            //foreach (var b in bookingList)
+            //{
+
+            //    Console.WriteLine(b.ToString());
+            //}
+
+            var bookingList =
+            from b in bookings
+            group b by b.GuestNo
+            into guestGroup
+            select guestGroup;
 
             foreach (var b in bookingList)
             {
-               
-                Console.WriteLine(b.ToString());
+                Console.WriteLine("Guest :" + b.Key.ToString());
+
+                foreach (var bg in b)
+                { Console.WriteLine(bg.ToString()); }
             }
+
+
+           
 
 
 
