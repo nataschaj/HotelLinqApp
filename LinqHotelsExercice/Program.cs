@@ -142,6 +142,16 @@ namespace LinqHotelsExercise
             }
             ;
 
+            var bookingList =
+            from b in bookings
+            select b;
+
+            foreach (var b in bookingList)
+            {
+                Console.WriteLine(b.ToString());
+            }
+
+
 
             //Exercise, use LINQ to retrive the following information about Hotels and Rooms:
 
