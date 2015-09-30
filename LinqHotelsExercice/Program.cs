@@ -156,9 +156,22 @@ namespace LinqHotelsExercise
             //    select new {mybookings.BookingId,mybookings.GuestNo, mybookings.RoomNo}
             //    ;
 
+            //var bookingList =
+            //    bookings.Select(mybookings => new { mybookings.BookingId, mybookings.GuestNo, mybookings.RoomNo })
+            //    ;
+
+            //SIMPLE SELECT with where
+            //var bookingList =
+            //    from mybookings in bookings
+            //    where mybookings.GuestNo == 1
+            //    select mybookings;
+
+            //SELECT with contains
             var bookingList =
-                bookings.Select(mybookings => new { mybookings.BookingId, mybookings.GuestNo, mybookings.RoomNo })
-                ;
+                from mybookings in bookings
+                where mybookings.HotelNo.ToString().Contains("5")
+                select mybookings;
+
 
 
             foreach (var b in bookingList)
