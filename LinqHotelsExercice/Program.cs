@@ -143,8 +143,8 @@ namespace LinqHotelsExercise
             ;
 
             var bookingList =
-            from b in bookings
-            select b;
+            from mybookings in bookings
+            select mybookings;
 
             foreach (var b in bookingList)
             {
