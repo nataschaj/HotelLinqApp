@@ -167,11 +167,19 @@ namespace LinqHotelsExercise
             //    select mybookings;
 
             //SELECT with contains
-            var bookingList =
-                from mybookings in bookings
-                where mybookings.HotelNo.ToString().Contains("5")
-                select mybookings;
+            //var bookingList =
+            //    from mybookings in bookings
+            //    where mybookings.HotelNo.ToString().Contains("5")
+            //select mybookings;
 
+            //var bookingList =
+            //    from mybookings in bookings
+            //    orderby mybookings.GuestNo descending, mybookings.RoomNo
+            //    select mybookings;
+
+            var bookingList =
+                bookings.OrderByDescending(mybookings => mybookings.GuestNo)
+                .ThenBy(mybookings => mybookings.RoomNo);
 
 
             foreach (var b in bookingList)
