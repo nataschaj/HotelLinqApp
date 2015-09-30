@@ -142,12 +142,28 @@ namespace LinqHotelsExercise
             }
             ;
 
+            //LINQ SIMPLE SELECT
+            //var bookingList =
+            //    from mybookings in bookings
+            //    select mybookings;
+
+            //var bookingList =
+            //    bookings.Select(mybookings => mybookings);
+
+            //Simple select with new Anonoumous type
+            //var bookingList =
+            //    from mybookings in bookings
+            //    select new {mybookings.BookingId,mybookings.GuestNo, mybookings.RoomNo}
+            //    ;
+
             var bookingList =
-            from mybookings in bookings
-            select mybookings;
+                bookings.Select(mybookings => new { mybookings.BookingId, mybookings.GuestNo, mybookings.RoomNo })
+                ;
+
 
             foreach (var b in bookingList)
             {
+               
                 Console.WriteLine(b.ToString());
             }
 
