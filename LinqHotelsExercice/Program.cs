@@ -187,22 +187,40 @@ namespace LinqHotelsExercise
             //    Console.WriteLine(b.ToString());
             //}
 
+            //var bookingList =
+            //from b in bookings
+            //group b by b.GuestNo
+            //into guestGroup
+            //select guestGroup;
+
+            //foreach (var b in bookingList)
+            //{
+            //    Console.WriteLine("Guest :" + b.Key.ToString());
+
+            //    foreach (var bg in b)
+            //    { Console.WriteLine(bg.ToString()); }
+            //}
+
             var bookingList =
             from b in bookings
             group b by b.GuestNo
             into guestGroup
-            select guestGroup;
+            orderby guestGroup.Key
+            select new
+            {
+                guestNo = guestGroup.Key,
+                MaxRoomNo = guestGroup.Max(x => x.RoomNo),
+                CountBookings = guestGroup.Count()
+            };
 
             foreach (var b in bookingList)
             {
-                Console.WriteLine("Guest :" + b.Key.ToString());
+               
 
-                foreach (var bg in b)
-                { Console.WriteLine(bg.ToString()); }
+                Console.WriteLine("Guest :" + b.guestNo + ", Max Room No : " + b.MaxRoomNo + ", Bookings : " + b.CountBookings);
             }
 
 
-           
 
 
 
