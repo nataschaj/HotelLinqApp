@@ -215,7 +215,7 @@ namespace LinqHotelsExercise
 
             //foreach (var b in bookingList)
             //{
-               
+
 
             //    Console.WriteLine("Guest :" + b.guestNo + ", Max Room No : " + b.MaxRoomNo + ", Bookings : " + b.CountBookings);
             //}
@@ -224,37 +224,102 @@ namespace LinqHotelsExercise
 
 
 
-            //Exercise, use LINQ to retrive the following information about Hotels and Rooms:
-
             // 1) List full details of all Hotels:
+            var hotelList = from h in hotels
+                            select h;
+
 
             // 2) List full details of all hotels in Roskilde:
+            var hotelList1 = from h in hotels
+                             where h.Address.Contains("Roskilde")
+                             select h;
 
             // 3) List the names of all hotels in Roskilde:
+            var hotelList2 = from h in hotels
+                             where h.Address.Contains("Roskilde")
+                             select h.Name;
 
             // 4) List all double rooms with a price below 400 pr night:
+            var roomlist4 = from room in rooms
+                           where room.Price < 400 && room.Types == 'D'
+                           select room;
 
             // 5) List all double or family rooms with a price below 400 pr night in ascending order of price:
+            var roomlist5 = from room in rooms
+                           where room.Price < 400 && (room.Types == 'D' || room.Types == 'F')
+                           select room;
 
             // 6) List all hotels that starts with 'P':
+            Console.WriteLine("All hotels that starts with P: ");
+            var hotelList6 = from hotel in hotels
+                             where hotel.Name.StartsWith("P")
+                             select hotel.Name;
 
             // 7) List the number of hotels:
+            var hotellist7 = hotels.Count();
 
             // 8) List the number of hotels in Roskilde:
+            var hotelsQuery4 = hotels.Count(hotel => hotel.Address.Contains("Roskilde"));
 
             // 9) what is the average price of a room:
+            var hotelList9 = rooms.Average(room => room.Price);
 
             //10) what is the average price of a room at Hotel Scandic:
+            var hotelList10 = from r in rooms
+                join h in hotels
+                    on r.Hotel.HotelNo equals h.HotelNo
+                    where h.Name.Equals("Scandic")
+                    select r.Price;
+
+            Console.WriteLine("Average price" + (int)hotelList10.Average());
+
+            //10) what is the average price of a room at Hotel Scandic:
+            var hotelList10a =
+                rooms.Join(hotels, r => r.Hotel.HotelNo, h => h.HotelNo, (r, h) => new { r, h })
+                    .Where(@t => @t.h.Name.Equals("Scandic"))
+                    .Select(@t => @t.r.Price)
+                    .Average();
+
+            Console.WriteLine("Average price" + (int)hotelList10a);
+
 
             //11) what is the total revenue per night from all double rooms:
 
+            var roomList11 = rooms.Where(room => room.Types == 'D').Select(room => room.Price).Sum();
+
+            var roomList11a = from room in rooms where room.Types == 'D' select room.Price;
+            Console.WriteLine("Total reveneue from all double rooms: ");
+            Console.WriteLine(roomList11a.Sum());
+
             //12) List price and type of all rooms at Hotel Prindsen:
+            var RoomList12 = from room in rooms
+                              join hotel in hotels
+                              on room.Hotel.HotelNo equals hotel.HotelNo
+                              where hotel.Name.Equals("Prindsen")
+                              select new { price = room.Price, type = room.Types };
+            Console.WriteLine("Price and type of all rooms at Hotel Prindsen : ");
+            foreach (var priceAndType in RoomList12)
+            {
+                Console.WriteLine("Price: " + priceAndType.price + " Type: " + priceAndType.type);
+            }
+            Console.WriteLine();
+
 
             //13) List distinct price and type of all rooms at Hotel Prindsen:
+            //List distinct price and type of all rooms at Hotel Prindsen
+            var RoomList13 = (from room in rooms
+                              join hotel in hotels
+                              on room.Hotel.HotelNo equals hotel.HotelNo
+                              where hotel.Name.Equals("Prindsen")
+                              select new { price = room.Price, type = room.Types }).Distinct();
 
-            //14) Join the Hotels and Rooms 
-
-            //15) Be creative....use the join and some aggregate functions..
+            Console.WriteLine("Price and type of all rooms at Hotel Prindsen DISTINCT: ");
+            foreach (var priceAndType in RoomList13)
+            {
+                Console.WriteLine("Price: " + priceAndType.price + " Type: " + priceAndType.type);
+            }
+            Console.WriteLine();
+            
 
             Console.ReadLine();
 
