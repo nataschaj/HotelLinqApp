@@ -139,7 +139,7 @@ namespace LinqHotelsExercise
                 new Booking(){BookingId =54,HotelNo = 7,RoomNo = 1,GuestNo = 25,FromDate = DateTime.Parse("2011-02-26"),ToDate = DateTime.Parse("2011-02-28")},
                 new Booking(){BookingId =55,HotelNo = 7,RoomNo = 2,GuestNo = 26,FromDate = DateTime.Parse("2011-02-27"),ToDate = DateTime.Parse("2011-02-28")},
                 new Booking(){BookingId =56,HotelNo = 7,RoomNo = 3,GuestNo = 27,FromDate = DateTime.Parse("2011-02-28"),ToDate = DateTime.Parse("2011-03-01")},
-            }
+            };
 
 
             // 1) List full details of all Hotels:
