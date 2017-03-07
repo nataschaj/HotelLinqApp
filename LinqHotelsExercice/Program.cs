@@ -144,6 +144,7 @@ namespace LinqHotelsExercise
 
             // 1) List full details of all Hotels:
 
+
             // 2) List full details of all hotels in Roskilde:
 
             // 3) List the names of all hotels in Roskilde:
